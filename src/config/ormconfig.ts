@@ -2,8 +2,6 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 const path = process.env.NODE_ENV === 'database' ? 'src' : 'dist';
 
-console.log(path);
-
 export const ormconfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,
