@@ -8,3 +8,9 @@ export interface IPaginated<T = unknown> {
   first_page: boolean;
   last_page: boolean;
 }
+
+export interface IPaginatedParams {
+  user_id: string;
+  page: number;
+  size: number;
+}

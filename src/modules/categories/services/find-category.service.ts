@@ -23,10 +23,15 @@ export class FindCategoryService {
     return this.buildCategoryResponse(category);
   }
 
-  private buildCategoryResponse({ id, name }: Category): ICategoryResponse {
+  private buildCategoryResponse({
+    id,
+    name,
+    color,
+  }: Category): ICategoryResponse {
     return {
       id,
       name,
+      color,
     };
   }
 }

@@ -19,6 +19,9 @@ export class Category {
   name: string;
 
   @Column()
+  color: string;
+
+  @Column()
   user_id: string;
 
   @ManyToOne(() => User)

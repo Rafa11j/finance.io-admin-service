@@ -19,6 +19,9 @@
       "@users/*": ["src/modules/users/*"],
       "@categories/*": ["src/modules/categories/*"],
       "@providers/*": ["src/modules/providers/*"],
+      "@payment-method/*": ["src/modules/payment-method/*"],
+      "@account/*": ["src/modules/account/*"],
+      "@transactions/*": ["src/modules/transactions/*"],
       "@shared/*": ["src/shared/*"],
     }
   }

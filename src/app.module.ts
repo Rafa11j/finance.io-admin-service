@@ -5,6 +5,10 @@ import { ProvidersModule } from '@providers/providers.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseConfig } from '@config/database';
 import { configEnvironment } from '@config/env';
+import { PaymentMethodModule } from '@payment-method/payment-method.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { TransactionsModule } from './modules/transactions/transactions.module';
+import { AccountModule } from './modules/accounts/account.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JobsModule } from './modules/jobs/jobs.module';
@@ -24,6 +28,10 @@ import { JobsModule } from './modules/jobs/jobs.module';
     UsersModule,
     AuthModule,
     CategoriesModule,
+    PaymentMethodModule,
+    AccountModule,
+    TransactionsModule,
+    DashboardModule,
   ],
   controllers: [],
   providers: [],

@@ -16,10 +16,15 @@ export class FindAllCategoriesService {
     return categories.map(category => this.buildCategoryResponse(category));
   }
 
-  private buildCategoryResponse({ id, name }: Category): ICategoryResponse {
+  private buildCategoryResponse({
+    id,
+    name,
+    color,
+  }: Category): ICategoryResponse {
     return {
       id,
       name,
+      color,
     };
   }
 }

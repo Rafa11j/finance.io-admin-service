@@ -6,4 +6,8 @@ export class CreateCategoryDto {
   @IsString()
   @IsNotEmpty({ message: 'Nome obrigatório' })
   name: string;
+
+  @ApiProperty()
+  @IsNotEmpty({ message: 'Cor obrigatória' })
+  color: string;
 }

@@ -39,10 +39,11 @@ export class FindAllCategoriesPaginatedService {
     };
   }
 
-  private buildCategory({ id, name }: Category): ICategoryResponse {
+  private buildCategory({ id, name, color }: Category): ICategoryResponse {
     return {
       id,
       name,
+      color,
     };
   }
 }

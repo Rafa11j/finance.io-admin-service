@@ -16,6 +16,7 @@ export class CategoriesRepository implements ICategoryRepository {
   async findAll(user_id: string): Promise<Category[]> {
     return this.categoryRepository.find({
       where: { user_id },
+      order: { name: 'ASC' },
     });
   }
 
@@ -28,6 +29,7 @@ export class CategoriesRepository implements ICategoryRepository {
       skip: page,
       take: size,
       where: { user_id },
+      order: { name: 'ASC' },
     });
   }
 
@@ -35,9 +37,10 @@ export class CategoriesRepository implements ICategoryRepository {
     return this.categoryRepository.findOne(id);
   }
 
-  async create({ name, user_id }: ICreateCategory): Promise<Category> {
+  async create({ name, user_id, color }: ICreateCategory): Promise<Category> {
     const category = this.categoryRepository.create({
       name,
+      color,
       user_id,
     });
 

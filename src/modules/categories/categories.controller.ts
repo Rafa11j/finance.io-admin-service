@@ -78,6 +78,7 @@ export class CategoriesController {
   ): Promise<Category> {
     return this.createCategoryService.execute({
       name: data.name,
+      color: data.color,
       user_id: req.user.id,
     });
   }
@@ -87,11 +88,12 @@ export class CategoriesController {
   @UseGuards(JwtAuthGuard)
   async update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() { name }: CreateCategoryDto,
+    @Body() { name, color }: CreateCategoryDto,
   ): Promise<ICategoryResponse> {
     return this.updateCategoryService.execute({
       id,
       name,
+      color,
     });
   }
 

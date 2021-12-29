@@ -10,9 +10,10 @@ export class CreateCategoryService {
     private readonly categoryRepository: ICategoryRepository,
   ) {}
 
-  async execute({ name, user_id }: ICreateCategory): Promise<Category> {
+  async execute({ name, color, user_id }: ICreateCategory): Promise<Category> {
     const category = await this.categoryRepository.create({
       name,
+      color,
       user_id,
     });
 

@@ -11,7 +11,11 @@ export class UpdateCategoryService {
     private readonly categoryRepository: ICategoryRepository,
   ) {}
 
-  async execute({ id, name }: IUpdateCategory): Promise<ICategoryResponse> {
+  async execute({
+    id,
+    name,
+    color,
+  }: IUpdateCategory): Promise<ICategoryResponse> {
     const category = await this.categoryRepository.findById(id);
 
     if (!category) {
@@ -22,16 +26,22 @@ export class UpdateCategoryService {
     }
 
     category.name = name;
+    category.color = color;
 
     await this.categoryRepository.update(category);
 
     return this.buildCategoryResponse(category);
   }
 
-  private buildCategoryResponse({ id, name }: Category): ICategoryResponse {
+  private buildCategoryResponse({
+    id,
+    name,
+    color,
+  }: Category): ICategoryResponse {
     return {
       id,
       name,
+      color,
     };
   }
 }
