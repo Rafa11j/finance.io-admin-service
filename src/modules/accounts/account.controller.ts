@@ -8,6 +8,7 @@ import {
   HttpStatus,
   Param,
   ParseUUIDPipe,
+  Patch,
   Post,
   Put,
   Query,
@@ -17,12 +18,14 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { IPaginated } from '@shared/models/paginated';
 import { CreateAccountDto } from './dtos/create-account.dto';
+import { TransferAccountDto } from './dtos/transfer-account.dto';
 import { AccountResponse } from './interfaces/account-response';
 import { CreateAccountService } from './services/create-account.service';
 import { DeleteAccountService } from './services/delete-account.service';
 import { FindAccountService } from './services/find-account.service';
 import { FindAllAccountsPaginatedService } from './services/find-all-accounts-paginated.service';
 import { FindAllAccountsService } from './services/find-all-accounts.service';
+import { TransferToAnotherAccountService } from './services/transfer-to-another-account.service';
 import { UpdateAccountService } from './services/update-account.service';
 
 @Controller('accounts')
@@ -36,6 +39,7 @@ export class AccountController {
     private readonly findAllPaginated: FindAllAccountsPaginatedService,
     private readonly findAccount: FindAccountService,
     private readonly deleteAccount: DeleteAccountService,
+    private readonly transferToAnotherAccount: TransferToAnotherAccountService,
   ) {}
 
   @Get()
@@ -77,7 +81,7 @@ export class AccountController {
   }
 
   @Put('/:id')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   async update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() body: CreateAccountDto,
@@ -85,6 +89,20 @@ export class AccountController {
     return this.updateAccount.execute({
       ...body,
       id,
+    });
+  }
+
+  @Patch('/:id/transfer/:destination_id')
+  @HttpCode(HttpStatus.OK)
+  async transfer(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Param('destination_id', ParseUUIDPipe) destinationId: string,
+    @Body() { value }: TransferAccountDto,
+  ): Promise<AccountResponse> {
+    return this.transferToAnotherAccount.execute({
+      current_account_id: id,
+      account_destination_id: destinationId,
+      value,
     });
   }
 

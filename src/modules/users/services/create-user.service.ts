@@ -12,6 +12,7 @@ import { ConfigService } from '@nestjs/config';
 import { IUsersRepository } from '@users/repositories/users-repository.interface';
 import { SendMailProducerService } from 'src/modules/jobs/mail/send-mail-producer.service';
 import { ISendMailDTO } from '@providers/dtos/mail.dto';
+import { UserTypeEnum } from '@users/enum/user-type';
 
 @Injectable()
 export class CreateUserService {
@@ -38,6 +39,8 @@ export class CreateUserService {
       name,
       token_expiration,
       occupation,
+      active: false,
+      user_type: UserTypeEnum.USER,
     });
 
     const appUrl = this.configService.get<string>('APP_FRONTEND');
@@ -49,7 +52,7 @@ export class CreateUserService {
         name,
         link: `${appUrl}/activation?token=${token}`,
       },
-      subject: '[Finance.io] Completar Cadastro',
+      subject: '[Finance.io] Complete seu cadastro',
       template: 'create-account',
       to: email,
     };

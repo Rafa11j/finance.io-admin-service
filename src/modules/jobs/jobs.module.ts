@@ -1,5 +1,6 @@
 import { BullModule, InjectQueue } from '@nestjs/bull';
 import { Global, MiddlewareConsumer, Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Queue } from 'bull';
 import { createBullBoard } from 'bull-board';
 import { BullAdapter } from 'bull-board/bullAdapter';
@@ -9,10 +10,15 @@ import { SendMailProducerService } from './mail/send-mail-producer.service';
 @Global()
 @Module({
   imports: [
-    BullModule.forRoot({
-      redis: {
-        host: 'localhost',
-        port: 6379,
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => {
+        return {
+          redis: {
+            ...configService.get('redis'),
+          },
+        };
       },
     }),
     BullModule.registerQueue({

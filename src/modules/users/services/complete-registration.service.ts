@@ -48,6 +48,7 @@ export class CompleteRegistrationService {
     }
 
     user.password = await this.hashProvider.hash(password);
+    user.active = true;
 
     await this.userRepository.update(user);
   }

@@ -8,6 +8,11 @@ import { CompleteRegistrationService } from './services/complete-registration.se
 import { userProviders } from './users.providers';
 import { UserRepository } from './repositories/users-entity-repository';
 import { FindUserService } from './services/find-user.service';
+import { UploadUserAvatarService } from './services/upload-user-avatar.service';
+import { UpdateUserService } from './services/update-user.service';
+import { ChangePasswordService } from './services/change-password.service';
+import { FindAllUsersPaginatedService } from './services/find-all-users-paginated.service';
+import { ActiveUserService } from './services/active-user.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, UserRepository])],
@@ -18,6 +23,11 @@ import { FindUserService } from './services/find-user.service';
     FindUserService,
     CreateUserService,
     CompleteRegistrationService,
+    UploadUserAvatarService,
+    UpdateUserService,
+    ChangePasswordService,
+    FindAllUsersPaginatedService,
+    ActiveUserService,
   ],
   exports: [...userProviders],
 })

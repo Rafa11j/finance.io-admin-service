@@ -21,4 +21,18 @@ export const configEnvironment = (): unknown => ({
       migrationsDir: `./${path}/config/database/migrations`,
     },
   },
+  redis: {
+    host: process.env.REDIS_HOST,
+    port: Number(process.env.REDIS_PORT),
+    password: process.env.REDIS_PASSWORD,
+  },
+  awsDefaultRegion: process.env.AWS_DEFAULT_REGION,
+  mailTrap: {
+    host: process.env.MAIL_TRAP_HOST,
+    port: Number(process.env.MAIL_TRAP_PORT),
+    auth: {
+      user: process.env.MAIL_TRAP_USER,
+      pass: process.env.MAIL_TRAP_PASS,
+    },
+  },
 });

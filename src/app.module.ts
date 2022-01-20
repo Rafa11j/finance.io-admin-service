@@ -25,8 +25,8 @@ import { JobsModule } from './modules/jobs/jobs.module';
       imports: [ConfigModule],
       useClass: DatabaseConfig,
     }),
-    UsersModule,
     AuthModule,
+    UsersModule,
     CategoriesModule,
     PaymentMethodModule,
     AccountModule,
@@ -34,6 +34,5 @@ import { JobsModule } from './modules/jobs/jobs.module';
     DashboardModule,
   ],
   controllers: [],
-  providers: [],
 })
 export class AppModule {}

@@ -50,6 +50,7 @@ export class FindAllTransactionsPaginatedService {
     id,
     type,
     value,
+    number_installments,
   }: Transaction): ITransactionPaginatedResponse {
     return {
       account: account.name,
@@ -61,6 +62,7 @@ export class FindAllTransactionsPaginatedService {
       id,
       type,
       value,
+      number_installments,
     };
   }
 }

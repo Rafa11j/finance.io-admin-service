@@ -10,7 +10,7 @@ export interface IPaginated<T = unknown> {
 }
 
 export interface IPaginatedParams {
-  user_id: string;
+  user_id?: string;
   page: number;
   size: number;
 }

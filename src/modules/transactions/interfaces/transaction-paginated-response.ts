@@ -11,4 +11,5 @@ export interface ITransactionPaginatedResponse {
   account_id: string;
   account: string;
   date: Date;
+  number_installments?: number;
 }

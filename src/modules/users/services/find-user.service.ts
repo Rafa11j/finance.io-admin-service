@@ -12,7 +12,7 @@ export class FindUserService {
   async execute(id: string): Promise<User> {
     const user = await this.userRepository.findById(id);
 
-    if (user) {
+    if (!user) {
       throw new HttpException(
         'Usuário não encontrado!',
         HttpStatus.BAD_REQUEST,

@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IPaginatedParams } from '@shared/models/paginated';
+import { IFindTransactionGraph } from '@transactions/interfaces/find-transaction-graph.request';
+import { Between } from 'typeorm';
 import { ICreateTransactionDto } from '../interfaces/create-transaction.dto';
 import { Transaction } from '../entities/Transaction';
 import { ITransactionRepository } from '../interfaces/transaction-respository';
@@ -16,6 +18,17 @@ export class TransactionRepository implements ITransactionRepository {
   async findAll(user_id: string): Promise<Transaction[]> {
     return this.transactionRepository.find({
       where: { user_id },
+      relations: ['category', 'account', 'payment_method'],
+    });
+  }
+
+  async findAllBetweenDate({
+    end_date,
+    start_date,
+    user_id,
+  }: IFindTransactionGraph): Promise<Transaction[]> {
+    return this.transactionRepository.find({
+      where: { user_id, date: Between(start_date, end_date) },
       relations: ['category', 'account', 'payment_method'],
     });
   }

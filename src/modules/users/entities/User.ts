@@ -1,3 +1,4 @@
+import { UserTypeEnum } from '@users/enum/user-type';
 import { Exclude } from 'class-transformer';
 import {
   Column,
@@ -32,6 +33,20 @@ export class User {
 
   @Column()
   token_expiration: Date;
+
+  @Column()
+  income: number;
+
+  @Column()
+  avatar: string;
+
+  @Column()
+  active: boolean;
+
+  @Column({
+    type: 'varchar',
+  })
+  user_type: UserTypeEnum;
 
   @CreateDateColumn()
   created_at: Date;

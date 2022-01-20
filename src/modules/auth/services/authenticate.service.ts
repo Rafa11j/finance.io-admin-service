@@ -39,12 +39,25 @@ export class AuthenticateService {
       );
     }
 
+    if (!user.active) {
+      throw new HttpException('Usuário inativo!', HttpStatus.UNAUTHORIZED);
+    }
+
     const { secret } = this.configService.get('jwt');
 
     const token = this.jwtService.sign(
-      { email: user.email, sub: user.id },
-      { secret },
+      {
+        email: user.email,
+        sub: user.id,
+        name: user.name,
+        user_type: user.user_type,
+      },
+      { secret, expiresIn: '1d' },
     );
+
+    const filesUrl = this.configService.get('FILE_URL_AWS');
+
+    const avatar = user?.avatar ? `${filesUrl}/${user?.avatar}` : null;
 
     return {
       token,
@@ -52,6 +65,9 @@ export class AuthenticateService {
       email: user.email,
       name: user.name,
       occupation: user.occupation,
+      avatar,
+      user_type: user.user_type,
+      income: user?.income,
     };
   }
 }

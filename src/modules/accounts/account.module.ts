@@ -9,6 +9,7 @@ import { DeleteAccountService } from './services/delete-account.service';
 import { FindAccountService } from './services/find-account.service';
 import { FindAllAccountsPaginatedService } from './services/find-all-accounts-paginated.service';
 import { FindAllAccountsService } from './services/find-all-accounts.service';
+import { TransferToAnotherAccountService } from './services/transfer-to-another-account.service';
 import { UpdateAccountService } from './services/update-account.service';
 
 @Module({
@@ -22,6 +23,7 @@ import { UpdateAccountService } from './services/update-account.service';
     FindAllAccountsPaginatedService,
     UpdateAccountService,
     DeleteAccountService,
+    TransferToAnotherAccountService,
   ],
   exports: [...accountProviders],
 })
